@@ -2,7 +2,7 @@ import flet as ft
 
 
 class MainLayout:
-    def __init__(self, page: ft.Page, click_start, click_stop, text_changed):
+    def __init__(self, page: ft.Page, click_start, click_stop, text_changed, on_result):
         self.page = page
         self.but_stop = ft.TextButton("STOP", expand=True, disabled=True, style=ft.ButtonStyle(color=ft.colors.RED),
                                       on_click=click_stop)
@@ -13,21 +13,23 @@ class MainLayout:
         self.connection_text = ft.Text("", expand=True, color=ft.colors.GREEN)
         self.log_text = ft.Text("", expand=True, color=ft.colors.LIGHT_BLUE_ACCENT_700, max_lines=4,
                                 height=90)
-
-    def build_page(self, on_result):
-        pick_files_dialog = ft.FilePicker(on_result=on_result)
-        self.page.overlay.append(pick_files_dialog)
-        main_column = ft.Column(expand=True, alignment=ft.MainAxisAlignment.CENTER)
-        open_file_layout = ft.Row([
-            ft.ElevatedButton(
+        self.pick_files_dialog = ft.FilePicker(on_result=on_result)
+        self.page.overlay.append(self.pick_files_dialog)
+        self.open_file_btn = ft.ElevatedButton(
                 "Загрузить .txt",
                 icon=ft.icons.UPLOAD_FILE,
-                on_click=lambda _: pick_files_dialog.pick_files(
+                on_click=lambda _: self.pick_files_dialog.pick_files(
                     allow_multiple=False
                 ),
                 icon_color=ft.colors.WHITE,
                 color=ft.colors.WHITE
-            ),
+            )
+
+    def build_page(self):
+
+        main_column = ft.Column(expand=True, alignment=ft.MainAxisAlignment.CENTER)
+        open_file_layout = ft.Row([
+            self.open_file_btn,
             self.selected_files,
         ])
         counter_codes_layout = ft.Row([

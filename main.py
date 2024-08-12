@@ -103,6 +103,10 @@ async def main(page: ft.Page):
         main_layout.but_stop.update()
         main_layout.but_start.disabled = True
         main_layout.but_start.update()
+        main_layout.open_file_btn.disabled = True
+        main_layout.open_file_btn.update()
+        main_layout.codes_count.read_only = True
+        main_layout.codes_count.update()
         while start:
             if n < max_count:
                 code_b = codes_list[n].encode()
@@ -129,6 +133,10 @@ async def main(page: ft.Page):
         main_layout.but_start.update()
         main_layout.log_text.value = main_layout.log_text.value + "\nОстановлено!"
         main_layout.log_text.update()
+        main_layout.open_file_btn.disabled = False
+        main_layout.open_file_btn.update()
+        main_layout.codes_count.read_only = False
+        main_layout.codes_count.update()
 
     page.vertical_alignment = ft.MainAxisAlignment.START
     page.horizontal_alignment = ft.CrossAxisAlignment.START
@@ -140,9 +148,9 @@ async def main(page: ft.Page):
     page.spacing = 20
     page.title = "Virtual Camera App"
 
-    main_layout = MainLayout(page, click_start, click_stop, textbox_changed)
+    main_layout = MainLayout(page, click_start, click_stop, textbox_changed, pick_files_result)
     page.add(
-        main_layout.build_page(pick_files_result)
+        main_layout.build_page()
     )
     main_layout.connection_text.value = "Ожидание подключения..."
     page.update()
@@ -154,4 +162,4 @@ async def main(page: ft.Page):
     main_layout.but_start.update()
 
 
-ft.app(target=main, view=ft.AppView.FLET_APP)
+ft.app(target=main, view=ft.AppView.FLET_APP, assets_dir="assets")
