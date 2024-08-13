@@ -1,5 +1,5 @@
 {
-  "camera_host": "192.168.1.126",
+  "camera_host": "localhost",
   "camera_port": 9999,
   "delay": 100
 }

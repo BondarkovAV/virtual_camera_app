@@ -19,7 +19,8 @@ class MainLayout:
                 "Загрузить .txt",
                 icon=ft.icons.UPLOAD_FILE,
                 on_click=lambda _: self.pick_files_dialog.pick_files(
-                    allow_multiple=False
+                    allow_multiple=False, file_type=ft.FilePickerFileType.CUSTOM,
+                    allowed_extensions=["txt"]
                 ),
                 icon_color=ft.colors.WHITE,
                 color=ft.colors.WHITE
