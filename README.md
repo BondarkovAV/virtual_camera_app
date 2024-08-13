@@ -1,7 +1,9 @@
 This is a simple machine vision camera emulation application.
 The application establishes a tcp connection with the client, and sends each line from the downloaded txt file.
 The application is configured by settings.json file.
+
 Application interface:
+
 ![image](https://github.com/user-attachments/assets/61d8c645-eac7-4da2-a293-63982da31fa0)
 
 A simple test:
