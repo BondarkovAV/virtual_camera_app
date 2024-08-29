@@ -118,9 +118,12 @@ async def main(page: ft.Page):
                 n += 1
             else:
                 main_layout.log_text.value = main_layout.log_text.value + "\nВыполнено!"
-                main_layout.log_text.update()
                 main_layout.codes_count.value = max_count
-                main_layout.codes_count.update()
+                main_layout.codes_count.read_only = False
+                main_layout.but_stop.disabled = True
+                main_layout.but_start.disabled = False
+                main_layout.open_file_btn.disabled = False
+                page.update()
                 n = 0
                 start = False
 
