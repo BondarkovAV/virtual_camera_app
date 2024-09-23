@@ -22,8 +22,8 @@ class MainLayout:
                     allow_multiple=False, file_type=ft.FilePickerFileType.CUSTOM,
                     allowed_extensions=["txt"]
                 ),
-                icon_color=ft.colors.WHITE,
-                color=ft.colors.WHITE
+                icon_color=ft.colors.ORANGE,
+                color=ft.colors.ORANGE
             )
 
     def build_page(self):
